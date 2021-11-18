@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SneakerNet">
         <activity
-            android:name=".MainActivity"
+            android:name=".Profile"
+            android:exported="true" />
+        <activity
+            android:name=".MainMenu"
+            android:exported="true" />
+        <activity
+            android:name=".LoginScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
