@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843445208066",
+    "project_id": "sneakernet-7245d",
+    "storage_bucket": "sneakernet-7245d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843445208066:android:f4f2f78a00b23c2146931b",
+        "android_client_info": {
+          "package_name": "com.example.sneakernet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843445208066-b7oc8jmaus52l0m5j2anculeta6c4hor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0-AdmKDJtScPEi0zek2hRCaOxy0y5A3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843445208066-b7oc8jmaus52l0m5j2anculeta6c4hor.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

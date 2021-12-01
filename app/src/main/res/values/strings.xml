@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SneakerNet</string>
+    <string name="welcome">\"Hello World\"</string>
+    <string name="User_Settings">About Me</string>
+    <string name="messaging">Inbox</string>
+    <string name="Collection">Stash</string>
+    <string name="Market">Market</string>
 </resources>
