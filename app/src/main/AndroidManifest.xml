@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SneakerNet">
         <activity
+            android:name=".Messaging"
+            android:exported="true" />
+        <activity
             android:name=".Profile"
             android:exported="true" />
         <activity
             android:name=".Stash"
-            android:exported="true" />
-        <activity
-            android:name=".UserMessages"
             android:exported="true" />
         <activity
             android:name=".MainMenu"

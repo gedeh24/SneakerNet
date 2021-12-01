@@ -127,7 +127,7 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
     }
     private void toUserMessages(){
-        Intent intent = new Intent(this, UserMessages.class);
+        Intent intent = new Intent(this, Messaging.class);
         startActivity(intent);
     }
     private void toUserProfile(){
