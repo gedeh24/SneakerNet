@@ -13,10 +13,13 @@
             android:name=".Profile"
             android:exported="true" />
         <activity
-            android:name=".MainMenu"
+            android:name=".Stash"
             android:exported="true" />
         <activity
-            android:name=".LoginScreen"
+            android:name=".UserMessages"
+            android:exported="true" />
+        <activity
+            android:name=".MainMenu"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
