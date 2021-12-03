@@ -4,18 +4,24 @@ import static android.content.ContentValues.TAG;
 
 ;
 
+import static com.google.firebase.auth.FirebaseAuth.getInstance;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.sneakernet.viewmodel.LoginViewModel;
+import com.firebase.ui.auth.data.model.User;
+//import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,7 +38,11 @@ public class MainMenu extends AppCompatActivity {
     private Button userMarket;
     private Button userMessages;
     private Button userCollection;
+    private int num_shoes;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     private static final int RC_SIGN_IN = 9001;
+    public static String EXTRA_MESSAGE = "000";
 
 
 
@@ -40,20 +50,22 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         // Enable Firestore logging
         FirebaseFirestore.setLoggingEnabled(true);
         FireBaseUtil g = new FireBaseUtil();
-        FirebaseAuth.getInstance().signOut();
+        getInstance().signOut();
         mFirestore = FireBaseUtil.getFirestore();
         mViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         initRecyclerView();
-        welcome = findViewById(R.id.welcomeMessage);
+        welcome = findViewById(R.id.UserSettings);
         welcome.setText("Welcome to SneakerNet where your \t\t\tshoes are the stars.\n\tWhat would you like to do???");
         userCollection = findViewById(R.id.userCollection);
         userSettings = findViewById(R.id.userSettings);
         userMarket = findViewById(R.id.userMarket);
         userMessages = findViewById(R.id.userMessaging);
-
+        num_shoes = sharedPref.getInt("Shoes in Collection", 0);
+       // mFirebaseAnalytics.setUserProperty("Number of Shoes", Integer.toString(num_shoes));
         userMessages.setVisibility(View.VISIBLE);
         userMarket.setVisibility(View.VISIBLE);
         userSettings.setVisibility(View.VISIBLE);
@@ -63,6 +75,9 @@ public class MainMenu extends AppCompatActivity {
         userMarket.invalidate();
         userSettings.invalidate();
         userCollection.invalidate();
+
+
+
 
         userSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +138,17 @@ public class MainMenu extends AppCompatActivity {
     }
 
     private void toStash(){
+        SharedPreferences sharedPref;
+
+        {
+            sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(EXTRA_MESSAGE, num_shoes);
+            editor.apply();
+        }
+
         Intent intent = new Intent(this, Stash.class);
+        intent.putExtra(EXTRA_MESSAGE,num_shoes);
         startActivity(intent);
     }
     private void toUserMessages(){
@@ -134,6 +159,7 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
+
 
 
 }

@@ -5,5 +5,17 @@
     <string name="messaging">Inbox</string>
     <string name="Collection">Stash</string>
     <string name="Market">Market</string>
-    <string name="NEWPAGE">NOT DONE YETTTTTTTTT</string>
+    <string name="Settings">About You</string>
+    <string name="Delete">Delete Account</string>
+    <string name="Stash">My Stash</string>
+    <string name="add_Sneaker">ADD NEW SNEAKER</string>
+    <string name="view_Stash">VIEW STASH</string>
+    <string name="shoeInformation">New Shoe Information</string>
+    <string name="submit_Form">Submit Form</string>
+    <string name="shoe_name">Enter Shoe Name:</string>
+    <string name="shoe_size">Enter Shoe Size:</string>
+    <string name="shoe_year">Enter Shoe Year:</string>
+    <string name="shoe_condition">Enter Shoe Condition (New or Used):</string>
+    <string name="shoe_color">Enter Shoe Color:</string>
+
 </resources>
