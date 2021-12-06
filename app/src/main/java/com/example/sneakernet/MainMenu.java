@@ -11,10 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sneakernet.viewmodel.LoginViewModel;
@@ -27,6 +31,8 @@ import com.google.firebase.firestore.Query;
 import androidx.lifecycle.ViewModelProvider;
 import com.firebase.ui.auth.AuthUI;
 import com.example.sneakernet.util.FireBaseUtil;
+
+import java.io.InputStream;
 import java.util.Collections;
 
 public class MainMenu extends AppCompatActivity {
@@ -159,7 +165,6 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
-
 
 
 }

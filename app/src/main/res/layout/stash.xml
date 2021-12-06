@@ -45,29 +45,23 @@
         android:id="@+id/addNew"
         android:layout_width="118dp"
         android:layout_height="70dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="60dp"
-        android:text="@string/add_Sneaker"
+        android:layout_marginStart="76dp"
+        android:layout_marginBottom="96dp"
         android:gravity="center"
+        android:text="@string/add_Sneaker"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/viewStash"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/viewStash"
         android:layout_width="118dp"
         android:layout_height="70dp"
-        android:layout_marginTop="402dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="96dp"
-        android:text="@string/view_Stash"
         android:gravity="center"
+        android:text="@string/view_Stash"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintStart_toEndOf="@+id/addNew" />
 
     <ImageView
         android:id="@+id/imageView7"

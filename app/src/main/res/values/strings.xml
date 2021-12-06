@@ -17,5 +17,5 @@
     <string name="shoe_year">Enter Shoe Year:</string>
     <string name="shoe_condition">Enter Shoe Condition (New or Used):</string>
     <string name="shoe_color">Enter Shoe Color:</string>
-
+    <string name="listOfSHoes"></string>
 </resources>

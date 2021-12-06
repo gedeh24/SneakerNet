@@ -1,18 +1,26 @@
-package com.example.sneakernet;
+package com.example.sneakernet.util;
 
-public class Shoe {
+import com.google.firebase.auth.FirebaseAuth;
+
+public class ShoeUtil {
     private String shoe_name;
     private int shoe_size;
     private int shoe_year;
     private String shoe_condition;
     private String shoe_color;
+    private String UID;
 
-    public Shoe(String shoe_name, int shoe_size, int shoe_year, String shoe_condition, String shoe_color){
+    public ShoeUtil(String shoe_name, int shoe_size, int shoe_year, String shoe_condition, String shoe_color, String UID){
         this.shoe_color = shoe_color;
         this.shoe_size = shoe_size;
         this.shoe_name = shoe_name;
         this.shoe_year = shoe_year;
         this.shoe_condition = shoe_condition;
+        this.UID = UID;
+    }
+
+    public String getUID() {
+        return UID;
     }
 
     public int getShoe_size() {
