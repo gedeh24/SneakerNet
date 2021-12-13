@@ -83,7 +83,12 @@ public class MainMenu extends AppCompatActivity {
         userCollection.invalidate();
 
 
-
+        userMarket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toMarketPlace();
+            }
+        });
 
         userSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +168,11 @@ public class MainMenu extends AppCompatActivity {
     }
     private void toUserProfile(){
         Intent intent = new Intent(this, Profile.class);
+        startActivity(intent);
+    }
+
+    private void toMarketPlace(){
+        Intent intent = new Intent(this, MarketPlace.class);
         startActivity(intent);
     }
 
