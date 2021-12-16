@@ -35,23 +35,66 @@ import com.example.sneakernet.util.FireBaseUtil;
 import java.io.InputStream;
 import java.util.Collections;
 
-public class MainMenu extends AppCompatActivity {
-    private FirebaseFirestore mFirestore;
-    private Query mQuery;
-    private LoginViewModel mViewModel;
-    private TextView welcome;
-    private Button userSettings;
-    private Button userMarket;
-    private Button userMessages;
-    private Button userCollection;
-    private int num_shoes;
-    private FirebaseAnalytics mFirebaseAnalytics;
+/**
+ * Main menu where user can login and choose from different options on where to go from there
+ */
 
+public class MainMenu extends AppCompatActivity {
+    /**
+     * Firestore instance
+     */
+    private FirebaseFirestore mFirestore;
+    /**
+     * Query instance
+     */
+    private Query mQuery;
+    /**
+     * Viewmodel instance
+     */
+    private LoginViewModel mViewModel;
+    /**
+     * Welcome textview
+     */
+    private TextView welcome;
+    /**
+     * Settings button
+     */
+    private Button userSettings;
+    /**
+     * market button
+     */
+    private Button userMarket;
+    /**
+     * user Message settings
+     */
+    private Button userMessages;
+    /**
+     * stash button
+     */
+    private Button userCollection;
+    /**
+     * shoes iin collection
+     */
+    private int num_shoes;
+    /**
+     * Analytics instance
+     */
+    private FirebaseAnalytics mFirebaseAnalytics;
+    /**
+     * sign in int
+     */
     private static final int RC_SIGN_IN = 9001;
+    /**
+     * String for when going to intent
+     */
     public static String EXTRA_MESSAGE = "000";
 
 
-
+    /**
+     * All buttons are set visible and user can sign in.
+     * Any button that is clicked will take you to the home page. There is a welcome text that is put in there as well
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,26 +125,36 @@ public class MainMenu extends AppCompatActivity {
         userSettings.invalidate();
         userCollection.invalidate();
 
-
+/**
+ * on click listener to send to another page
+ */
         userMarket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toMarketPlace();
             }
         });
-
+/**
+ * on click listener to send to another page
+ */
         userSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toUserProfile();
             }
         });
+        /**
+         * on click listener to send to another page
+         */
         userCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toStash();
             }
         });
+        /**
+         * on click listener to send to another page
+         */
         userMessages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +165,9 @@ public class MainMenu extends AppCompatActivity {
 
     }
 
+    /**
+     * on start
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -123,9 +179,18 @@ public class MainMenu extends AppCompatActivity {
         }
 
     }
+
+    /**
+     * returns sign in boolean
+     * @return
+     */
     private boolean shouldStartSignIn() {
         return (!mViewModel.getIsSigningIn() && FireBaseUtil.getAuth().getCurrentUser() == null);
     }
+
+    /**
+     * signs in to firebase
+     */
 
     private void startSignIn() {
         // Sign in with FirebaseUI
@@ -141,6 +206,9 @@ public class MainMenu extends AppCompatActivity {
         mViewModel.setIsSigningIn(true);
     }
 
+    /**
+     * Initializes recycler view
+     */
 
     private void initRecyclerView() {
         if (mQuery == null) {
@@ -148,6 +216,9 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
+    /**
+     * takes me to stash page. saves how many shoes user has
+     */
     private void toStash(){
         SharedPreferences sharedPref;
 
@@ -162,15 +233,26 @@ public class MainMenu extends AppCompatActivity {
         intent.putExtra(EXTRA_MESSAGE,num_shoes);
         startActivity(intent);
     }
+
+    /**
+     * takes me to usermessages
+     */
     private void toUserMessages(){
         Intent intent = new Intent(this, Messaging.class);
         startActivity(intent);
     }
+
+    /**
+     * takes me to user profile
+     */
     private void toUserProfile(){
         Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
 
+    /**
+     * takes me to marketplace
+     */
     private void toMarketPlace(){
         Intent intent = new Intent(this, MarketPlace.class);
         startActivity(intent);

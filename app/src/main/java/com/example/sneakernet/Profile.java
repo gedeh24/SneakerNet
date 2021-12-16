@@ -27,14 +27,44 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity {
+    /**
+     * Deletes profile button
+     */
     private Button deleteProfile;
+    /**
+     * Logout button
+     */
     private Button logOut;
+    /**
+     * Textview of name
+     */
     private TextView name;
+    /**
+     * Email that user can edit
+     */
     private EditText email;
+    /**
+     * keeps track of how many shoes are in stash
+     */
     private TextView shoe_counter;
+    /**
+     * Firestore instance
+     */
     private FirebaseFirestore mFirestore;
+    /**
+     * integer of shoes present
+     */
     private int shoe_count;
+    /**
+     * button to confirm changes
+     */
     private Button userChanges;
+
+    /**
+     * User can edit profile. The amount of shoes a user has is recounted, for any shoe with that user id is
+     * added to the count. User can also edit name as well. User can delete account from there as well.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +102,9 @@ public class Profile extends AppCompatActivity {
         name = findViewById(R.id.Name);
         email = findViewById(R.id.userEmail);
 
-
+        /**
+         * updates email
+         */
         userChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,13 +119,18 @@ public class Profile extends AppCompatActivity {
         //email.setText();
 
 
-
+/**
+ * logsout firebase project
+ */
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
             }
         });
+        /**
+         * DELETES FIREBASE user
+         */
         deleteProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

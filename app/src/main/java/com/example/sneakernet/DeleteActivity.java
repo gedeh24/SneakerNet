@@ -24,17 +24,35 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+/**
+ * class allows user to delete from database
+ */
+
 public class DeleteActivity extends AppCompatActivity {
-
+    /**
+     * button to accept deletion
+     */
     private Button accept_delete;
+    /**
+     * button to decline deletion
+     */
     private Button decline_delete;
+    /**
+     * query instance
+     */
     private Query mQuery;
-
-
+    /**
+     * firestore instance
+     */
     private FirebaseFirestore mFirestore;
 
     public static final String KEY_SHOE_NAME = "key_shoe_id2";
 
+    /**
+     * Loads the shoe name and has an accept delete and decline delete. If the button is pressed then the user can delete the
+     * shoe from data base
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +62,18 @@ public class DeleteActivity extends AppCompatActivity {
         accept_delete = findViewById(R.id.button5);
         decline_delete = findViewById(R.id.button6);
 
-
+/**
+ * accept to delete
+ */
         accept_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-
+/**
+ * decline to delete
+ */
         decline_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

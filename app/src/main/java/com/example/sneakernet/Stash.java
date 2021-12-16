@@ -44,23 +44,65 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class that that holds the user stash
+ */
 public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicked  {
+    /**
+     * Fire store instance
+     */
     private FirebaseFirestore mFirestore;
+    /**
+     * ArrayList that holds every shoe
+     */
     private ArrayList<ShoeUtil> userShoe;
+    /**
+     * button that generates new shoe
+     */
     private Button newShoe;
+    /**
+     * view shoes
+     */
     private Button viewShoes;
+    /**
+     * Dialog to go to another window
+     */
     private Dialog dialog;
+    /**
+     * Dialog to go to another window
+     */
     private Dialog dialog_view;
+    /**
+     * Dialog to go to another window
+     */
     private Dialog shoe_viewer;
+    /**
+     * Shoe Name
+     */
     private String shoe_names;
+    /**
+     *Whether user checked box or not
+     */
     private CheckBox checkBox;
+    /**
+     * Collection reference of shoes
+     */
     private Query mQuery;
-    private ViewGroup mEmptyView;
 
 
+    /**
+     * Recycler view to view shoes
+     */
     private RecyclerView recyclerView;
+    /**
+     * adapter that changes for every shoe instance
+     */
     private shoeAdapter mAdapter;
 
+    /**
+     * creates layout that holds stash
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +122,9 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
         dialog_view = new Dialog(this);
         shoe_viewer = new Dialog(this);
 
-
+        /**
+         * When button is pressed goes through list and lists every shoe and puts into recycle view
+         */
         viewShoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +186,10 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
 
 
 
-
+        /**
+         * When new shew is added a forum is generated where user can enter shoe information
+         * shoe is then put into the database
+         */
         dialog = new Dialog(this);
         newShoe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,16 +226,20 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
     }
     //get user name and put into database
 
+    /**
+     * adds shoe to data base
+     * @param shoeUtil Shoe util holds a shoe
+     */
+
     public void addShoe(ShoeUtil shoeUtil){
         CollectionReference shoes = mFirestore.collection("Shoe");
         shoes.add(shoeUtil);
     }
 
 
-
-
-
-
+    /**
+     * recycle view that adds all the shoes to the view. sets adapters and layouts to fit
+     */
 
     private void initRecyclerView() {
         if (mQuery == null) {
@@ -204,7 +255,10 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
 
     }
 
-
+    /**
+     * when shoe is clicked it will open up delete shoe activity where shoe can be deleted
+     * @param position
+     */
     @Override
     public void shoeClicked(int position) {
         userShoe.get(position);
