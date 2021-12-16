@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SneakerNet">
         <activity
+            android:name=".ShoeDetailMarket"
+            android:exported="true" />
+        <activity
             android:name=".MarketPlace"
             android:exported="true" />
         <activity

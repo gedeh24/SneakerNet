@@ -11,6 +11,7 @@ public class ShoeUtil {
     private String UID;
     private Boolean done;
 
+
     public ShoeUtil(String shoe_name, int shoe_size, int shoe_year, String shoe_condition, String shoe_color, String UID, Boolean done){
         this.shoe_color = shoe_color;
         this.shoe_size = shoe_size;

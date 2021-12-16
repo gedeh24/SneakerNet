@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,13 +21,19 @@ import com.example.sneakernet.util.FireBaseUtil;
 import com.example.sneakernet.util.ShoeUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class MarketPlace extends AppCompatActivity {
+public class MarketPlace extends AppCompatActivity implements shoeAdapter.onShoeClicked {
+    private Query mQuery;
+    private shoeAdapter mAdapter;
 
     private FirebaseFirestore mFirestore;
     private ArrayList<ShoeUtil> userShoe;
@@ -41,10 +48,10 @@ public class MarketPlace extends AppCompatActivity {
         FirebaseFirestore.setLoggingEnabled(true);
         userShoe = new ArrayList<>();
         recyclerView =  findViewById(R.id.recyclerView);
+        mQuery = mFirestore.collection("Shoe");
 
 
-        mFirestore.collection("Shoe")
-                .get()
+        mQuery.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -65,7 +72,7 @@ public class MarketPlace extends AppCompatActivity {
                                     userShoe.add(duplicate_shoe);
                                 }
                             }
-                            setAdapter();
+                            initRecyclerView();
 
 
                         } else {
@@ -76,11 +83,32 @@ public class MarketPlace extends AppCompatActivity {
 
     }
 
-    private void setAdapter(){
-        shoeAdapter shoeAdapter = new shoeAdapter(userShoe);
+
+
+    private void initRecyclerView() {
+        if (mQuery == null) {
+            Log.w(TAG, "No query, not initializing RecyclerView");
+        }
+
+        mAdapter = new shoeAdapter(userShoe, this);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(shoeAdapter);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+
+    @Override
+    public void shoeClicked(int position) {
+       userShoe.get(position);
+        Intent intent = new Intent(this, ShoeDetailMarket.class);
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_NAME, userShoe.get(position).getShoe_name());
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_ID, userShoe.get(position).getUID());
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_COLOR, userShoe.get(position).getShoe_color());
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_SIZE, Integer.toString(userShoe.get(position).getShoe_size()));
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_CONDITION, userShoe.get(position).isShoe_condition());
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_NAME, Integer.toString(userShoe.get(position).getShoe_year()));
+        startActivity(intent);
     }
 }

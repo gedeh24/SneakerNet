@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -27,9 +28,12 @@ import com.example.sneakernet.util.FireBaseUtil;
 import com.example.sneakernet.util.ShoeUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -40,7 +44,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Stash extends AppCompatActivity {
+public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicked  {
     private FirebaseFirestore mFirestore;
     private ArrayList<ShoeUtil> userShoe;
     private Button newShoe;
@@ -51,7 +55,10 @@ public class Stash extends AppCompatActivity {
     private String shoe_names;
     private CheckBox checkBox;
     private Query mQuery;
+    private ViewGroup mEmptyView;
+
     private RecyclerView recyclerView;
+    private shoeAdapter mAdapter;
 
 
     @Override
@@ -82,8 +89,8 @@ public class Stash extends AppCompatActivity {
               //  TextView myShoes = dialog_view.findViewById(R.id.listOfShoes);
                 recyclerView = dialog_view.findViewById(R.id.imageRecyler);
                 shoe_names="";
-                mFirestore.collection("Shoe")
-                        .get()
+
+                mQuery.get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -108,7 +115,7 @@ public class Stash extends AppCompatActivity {
                                        //shoe_names= shoe_names+ document.getData().get("shoe_name")+"\n";
                                        // myShoes.setText(shoe_names);
                                     }
-                                    setAdapter();
+                                    initRecyclerView();
 
 
                                 } else {
@@ -173,13 +180,38 @@ public class Stash extends AppCompatActivity {
         shoes.add(shoeUtil);
     }
 
-    private void setAdapter(){
-        shoeAdapter shoeAdapter = new shoeAdapter(userShoe);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+
+
+
+
+
+
+    private void initRecyclerView() {
+        if (mQuery == null) {
+            Log.w(TAG, "No query, not initializing RecyclerView");
+        }
+
+        mAdapter = new shoeAdapter(userShoe, this);
+
+       RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(shoeAdapter);
+        recyclerView.setAdapter(mAdapter);
+
     }
 
+
+
+    public void OnShoeSelected(DocumentSnapshot shoeUtil) {
+        Intent intent = new Intent(this, Messaging.class);
+        //intent.putExtra(Messaging.KEY_RESTAURANT_ID, restaurant.getId());
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void shoeClicked(int position) {
+
+    }
 }
 
