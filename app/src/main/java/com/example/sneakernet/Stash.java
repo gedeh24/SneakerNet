@@ -57,6 +57,7 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
     private Query mQuery;
     private ViewGroup mEmptyView;
 
+
     private RecyclerView recyclerView;
     private shoeAdapter mAdapter;
 
@@ -106,8 +107,10 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
                                         String condition = (String)document.getData().get("shoe_condition");
                                         String UID = (String)document.getData().get("uid");
                                         Boolean done = (Boolean)document.getData().get("done");
+                                        Long shoe_price = (Long)document.getData().get("shoe_price");
+                                        int new_shoe_price = shoe_price.intValue();
                                         if(UID.equals(FirebaseAuth.getInstance().getUid()) ){
-                                            ShoeUtil duplicate_shoe = new ShoeUtil(temp,new_ret,new_shoe_year,condition,color,UID,done);
+                                            ShoeUtil duplicate_shoe = new ShoeUtil(temp,new_ret,new_shoe_year,condition,color,UID,done, new_shoe_price);
                                             userShoe.add(duplicate_shoe);
                                         }
                                        // Log.d(TAG,"hey there + " +UID);
@@ -161,10 +164,11 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
                         EditText userAnswer3= dialog.findViewById(R.id.useAns3);
                         EditText userAnswer4= dialog.findViewById(R.id.useAns4);
                         EditText userAnswer5= dialog.findViewById(R.id.useAns5);
+                        EditText userAnswer6 = dialog.findViewById(R.id.useAns);
                         checkBox = dialog.findViewById(R.id.marketAvailability);
                         Boolean available = checkBox.isChecked();
-
-                        ShoeUtil shoeUtil = new ShoeUtil(userAnswer1.getText().toString(),Integer.parseInt(userAnswer2.getText().toString()),Integer.parseInt(userAnswer3.getText().toString()),userAnswer4.getText().toString(),userAnswer5.getText().toString(),FirebaseAuth.getInstance().getUid().toString(),available);
+                        int temp = Integer.parseInt(userAnswer6.getText().toString());
+                        ShoeUtil shoeUtil = new ShoeUtil(userAnswer1.getText().toString(),Integer.parseInt(userAnswer2.getText().toString()),Integer.parseInt(userAnswer3.getText().toString()),userAnswer4.getText().toString(),userAnswer5.getText().toString(),FirebaseAuth.getInstance().getUid().toString(),available, temp);
                         addShoe(shoeUtil);
                         dialog.dismiss();
                     }
@@ -200,14 +204,6 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
 
     }
 
-
-
-    public void OnShoeSelected(DocumentSnapshot shoeUtil) {
-        Intent intent = new Intent(this, Messaging.class);
-        //intent.putExtra(Messaging.KEY_RESTAURANT_ID, restaurant.getId());
-
-        startActivity(intent);
-    }
 
     @Override
     public void shoeClicked(int position) {

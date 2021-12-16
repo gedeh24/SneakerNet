@@ -12,7 +12,11 @@ public class ShoeUtil {
     private Boolean done;
 
 
-    public ShoeUtil(String shoe_name, int shoe_size, int shoe_year, String shoe_condition, String shoe_color, String UID, Boolean done){
+
+    private int shoe_price;
+
+
+    public ShoeUtil(String shoe_name, int shoe_size, int shoe_year, String shoe_condition, String shoe_color, String UID, Boolean done, int shoe_price){
         this.shoe_color = shoe_color;
         this.shoe_size = shoe_size;
         this.shoe_name = shoe_name;
@@ -20,7 +24,16 @@ public class ShoeUtil {
         this.shoe_condition = shoe_condition;
         this.UID = UID;
         this.done = done;
+        this.shoe_price = shoe_price;
+}
+    public int getShoe_price() {
+        return shoe_price;
     }
+
+    public void setShoe_price(int shoe_price) {
+        this.shoe_price = shoe_price;
+    }
+
 
     public Boolean getDone() {
         return done;

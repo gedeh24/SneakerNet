@@ -67,8 +67,10 @@ public class MarketPlace extends AppCompatActivity implements shoeAdapter.onShoe
                                 String condition = (String)document.getData().get("shoe_condition");
                                 String UID = (String)document.getData().get("uid");
                                 Boolean done = (Boolean)document.getData().get("done");
+                                Long shoe_price = (Long)document.getData().get("shoe_price");
+                                int new_shoe_price = shoe_price.intValue();
                                 if(done == true) {
-                                    ShoeUtil duplicate_shoe = new ShoeUtil(temp, new_ret, new_shoe_year, condition, color, UID, done);
+                                    ShoeUtil duplicate_shoe = new ShoeUtil(temp, new_ret, new_shoe_year, condition, color, UID, done, new_shoe_price);
                                     userShoe.add(duplicate_shoe);
                                 }
                             }
@@ -108,7 +110,8 @@ public class MarketPlace extends AppCompatActivity implements shoeAdapter.onShoe
         intent.putExtra(ShoeDetailMarket.KEY_SHOE_COLOR, userShoe.get(position).getShoe_color());
         intent.putExtra(ShoeDetailMarket.KEY_SHOE_SIZE, Integer.toString(userShoe.get(position).getShoe_size()));
         intent.putExtra(ShoeDetailMarket.KEY_SHOE_CONDITION, userShoe.get(position).isShoe_condition());
-        intent.putExtra(ShoeDetailMarket.KEY_SHOE_NAME, Integer.toString(userShoe.get(position).getShoe_year()));
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_YEAR, Integer.toString(userShoe.get(position).getShoe_year()));
+        intent.putExtra(ShoeDetailMarket.KEY_SHOE_PRICE, Integer.toString(userShoe.get(position).getShoe_price()));
         startActivity(intent);
     }
 }

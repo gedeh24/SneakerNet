@@ -18,4 +18,7 @@
     <string name="shoe_condition">Enter Shoe Condition (New or Used):</string>
     <string name="shoe_color">Enter Shoe Color:</string>
     <string name="listOfSHoes"></string>
+    <string name="contactUser">Contact User</string>
+    <string name="placeBid">Place Bid</string>
+    <string name="user_purchase">Buy</string>
 </resources>

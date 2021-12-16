@@ -6,4 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".ShoeDetailMarket">
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="167dp"
+        android:layout_height="143dp"
+        android:layout_marginTop="72dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/ShoeContext"
+        android:layout_width="211dp"
+        android:layout_height="103dp"
+        android:layout_marginBottom="228dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/userBid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/messageOwner"
+        android:layout_width="116dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="236dp"
+        android:text="@string/contactUser"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/userBid"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/userBid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="100dp"
+        android:text="@string/placeBid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/userPurchase" />
+
+    <Button
+        android:id="@+id/userPurchase"
+        android:layout_width="104dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="236dp"
+        android:text="@string/user_purchase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
