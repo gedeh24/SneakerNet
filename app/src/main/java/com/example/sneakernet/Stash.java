@@ -207,6 +207,10 @@ public class Stash extends AppCompatActivity implements shoeAdapter.onShoeClicke
 
     @Override
     public void shoeClicked(int position) {
+        userShoe.get(position);
+        Intent intent = new Intent(this, DeleteActivity.class);
+        intent.putExtra(DeleteActivity.KEY_SHOE_NAME, userShoe.get(position).getShoe_name());
+        startActivity(intent);
 
     }
 }

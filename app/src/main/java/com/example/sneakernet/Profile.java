@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sneakernet.util.FireBaseUtil;
@@ -29,14 +30,16 @@ public class Profile extends AppCompatActivity {
     private Button deleteProfile;
     private Button logOut;
     private TextView name;
-    private TextView email;
+    private EditText email;
     private TextView shoe_counter;
     private FirebaseFirestore mFirestore;
     private int shoe_count;
+    private Button userChanges;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        userChanges = findViewById(R.id.userChanges);
         logOut = findViewById(R.id.button2);
         deleteProfile = findViewById(R.id.DeleteAccount);
         shoe_count = 0;
@@ -70,11 +73,18 @@ public class Profile extends AppCompatActivity {
         email = findViewById(R.id.userEmail);
 
 
+        userChanges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getInstance().getCurrentUser().updateEmail(email.getText().toString());
+            }
+        });
 
 
 
         name.setText("Name is: " + getInstance().getCurrentUser().getDisplayName());
-        email.setText("User's email is " + getInstance().getCurrentUser().getEmail());
+        email.setHint("User's email is " + getInstance().getCurrentUser().getEmail());
+        //email.setText();
 
 
 

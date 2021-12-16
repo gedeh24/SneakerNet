@@ -56,14 +56,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/userEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/userShoeNumbers"
@@ -71,6 +72,15 @@
             android:layout_height="wrap_content"
             android:text="FF000000"
             android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/userChanges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Submit \n Changes">
+
+        </Button>
 
     </LinearLayout>
 
